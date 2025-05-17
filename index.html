@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>多言語の「こんにちは」</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        .container { max-width: 600px; margin: 20px auto; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 10px; border: 1px solid #ccc; }
+        button { padding: 5px 10px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>多言語の「こんにちは」</h1>
+    <div class="container">
+        <table>
+            <tr>
+                <th>言語</th>
+                <th>挨拶</th>
+                <th>ルビー</th>
+                <th>発音</th>
+            </tr>
+            <tr>
+                <td>英語</td>
+                <td>Hello</td>
+                <td><ruby>ハロー</ruby></td>
+                <td><button onclick="playAudio('en')">▶️</button></td>
+            </tr>
+            <tr>
+                <td>フランス語</td>
+                <td>Bonjour</td>
+                <td><ruby>ボンジュール</ruby></td>
+                <td><button onclick="playAudio('fr')">▶️</button></td>
+            </tr>
+            <tr>
+                <td>ドイツ語</td>
+                <td>Guten Tag</td>
+                <td><ruby>グーテン ターク</ruby></td>
+                <td><button onclick="playAudio('de')">▶️</button></td>
+            </tr>
+            <tr>
+                <td>イタリア語</td>
+                <td>Buongiorno</td>
+                <td><ruby>ボンジョルノ</ruby></td>
+                <td><button onclick="playAudio('it')">▶️</button></td>
+            </tr>
+            <tr>
+                <td>ポルトガル語</td>
+                <td>Olá</td>
+                <td><ruby>オラ</ruby></td>
+                <td><button onclick="playAudio('pt')">▶️</button></td>
+            </tr>
+            <tr>
+                <td>スペイン語</td>
+                <td>Hola</td>
+                <td><ruby>オラ</ruby></td>
+                <td><button onclick="playAudio('es')">▶️</button></td>
+            </tr>
+            <tr>
+                <td>デンマーク語</td>
+                <td>Halloj</td>
+                <td><ruby>ハロイ</ruby></td>
+                <td><button onclick="playAudio('da')">▶️</button></td>
+            </tr>
+            <tr>
+                <td>ノルウェー語</td>
+                <td>Hallo</td>
+                <td><ruby>ハロ</ruby></td>
+                <td><button onclick="playAudio('no')">▶️</button></td>
+            </tr>
+            <tr>
+                <td>スウェーデン語</td>
+                <td>Hej</td>
+                <td><ruby>ヘイ</ruby></td>
+                <td><button onclick="playAudio('sv')">▶️</button></td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        function playAudio(lang) {
+            const greetings = {
+                en: "Hello",
+                fr: "Bonjour",
+                de: "Guten Tag",
+                it: "Buongiorno",
+                pt: "Olá",
+                es: "Hola",
+                da: "Halloj",
+                no: "Hallo",
+                sv: "Hej",
+                ja: "こんにちは"
+            };
+            const text = greetings[lang] || "こんにちは";
+            const utter = new SpeechSynthesisUtterance(text);
+            // 言語コードを設定
+            const langMap = {
+                en: "en-US",
+                fr: "fr-FR",
+                de: "de-DE",
+                it: "it-IT",
+                pt: "pt-PT",
+                es: "es-ES",
+                da: "da-DK",
+                no: "no-NO",
+                sv: "sv-SE",
+                ja: "ja-JP"
+            };
+            utter.lang = langMap[lang] || "ja-JP";
+            window.speechSynthesis.speak(utter);
+        }
+    </script>
+</body>
+</html>
